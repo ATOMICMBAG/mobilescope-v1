@@ -1,6 +1,6 @@
 {
   "name": "@mobilescope/web",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "@capacitor/filesystem": "^8.1.5",
     "@capacitor/share": "^8.0.3",
     "@mobilescope/core": "*",
-    "@mobilescope/data": "^0.1.0",
+    "@mobilescope/data": "^1.0.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

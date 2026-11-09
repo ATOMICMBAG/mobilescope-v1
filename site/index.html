@@ -368,11 +368,7 @@
         text-align: center;
       }
       .fineprint {
-        padding: 32px 0;
-      }
-      .fineprint h3 {
-        font-size: 0.95rem;
-        color: var(--muted);
+        text-align: center;
       }
       .fineprint p {
         font-size: 0.82rem;
@@ -706,8 +702,44 @@
         </div>
       </section>
 
+      <section>
+        <p class="eyebrow">
+          <span data-l="de">Gut zu wissen</span
+          ><span data-l="en">Good to know</span>
+        </p>
+        <p data-l="de">
+          mobilescope wertet nur Funk-Metadaten aus, die Geräte offen aussenden.
+          Es verbindet sich mit keinem fremden Gerät, entschlüsselt nichts,
+          sendet nichts und speichert keinen Standort. Bitte nutze es als
+          Messwerkzeug: nicht, um Personen zu verfolgen, und nur dort, wo du
+          messen darfst. MAC-Adressen und BLE-Kennungen können personenbezogen
+          sein.
+        </p>
+        <p data-l="en">
+          mobilescope only evaluates radio metadata that devices broadcast
+          openly. It connects to no foreign device, decrypts nothing, sends
+          nothing and stores no location. Please use it as a measurement tool:
+          not to track people, and only where you are allowed to measure. MAC
+          addresses and BLE identifiers can be personal data.
+        </p>
+        <p data-l="de">
+          Nach unserem Verständnis ist ein passiver Empfänger offener Metadaten
+          ein Dual-Use-Werkzeug wie gängige WLAN-Analyzer-Apps; für Missbrauch
+          haftet, wer die Software missbraucht oder verändert. Das ist keine
+          Rechtsberatung. Die Software steht unter der Apache-Lizenz 2.0, ohne
+          Gewährleistung.
+        </p>
+        <p data-l="en">
+          To our understanding, a passive receiver of open metadata is a
+          dual-use tool like common WLAN analyzer apps; whoever misuses or
+          modifies the software is responsible for that misuse. This is not
+          legal advice. The software is licensed under the Apache License 2.0,
+          without warranty.
+        </p>
+      </section>
+
       <!-- 6. Danke + Links -->
-      <section class="thanks">
+      <section>
         <p class="eyebrow">
           <span data-l="de">Download</span
           ><span data-l="en">Download</span>
@@ -743,42 +775,7 @@
           </a>
         </div>
       </section>
-
-      <section class="fineprint" aria-labelledby="fp-h">
-        <h3 id="fp-h">
-          <span data-l="de">Gut zu wissen</span
-          ><span data-l="en">Good to know</span>
-        </h3>
-        <p data-l="de">
-          mobilescope wertet nur Funk-Metadaten aus, die Geräte offen aussenden.
-          Es verbindet sich mit keinem fremden Gerät, entschlüsselt nichts,
-          sendet nichts und speichert keinen Standort. Bitte nutze es als
-          Messwerkzeug: nicht, um Personen zu verfolgen, und nur dort, wo du
-          messen darfst. MAC-Adressen und BLE-Kennungen können personenbezogen
-          sein.
-        </p>
-        <p data-l="en">
-          mobilescope only evaluates radio metadata that devices broadcast
-          openly. It connects to no foreign device, decrypts nothing, sends
-          nothing and stores no location. Please use it as a measurement tool:
-          not to track people, and only where you are allowed to measure. MAC
-          addresses and BLE identifiers can be personal data.
-        </p>
-        <p data-l="de">
-          Nach unserem Verständnis ist ein passiver Empfänger offener Metadaten
-          ein Dual-Use-Werkzeug wie gängige WLAN-Analyzer-Apps; für Missbrauch
-          haftet, wer die Software missbraucht oder verändert. Das ist keine
-          Rechtsberatung. Die Software steht unter der Apache-Lizenz 2.0, ohne
-          Gewährleistung.
-        </p>
-        <p data-l="en">
-          To our understanding, a passive receiver of open metadata is a
-          dual-use tool like common WLAN analyzer apps; whoever misuses or
-          modifies the software is responsible for that misuse. This is not
-          legal advice. The software is licensed under the Apache License 2.0,
-          without warranty.
-        </p>
-      </section>
+      
     </div>
     <footer>
       © mobilescope · <a target="_blank" href="https://maazi.de">maazi.de</a> ·

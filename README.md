@@ -9,7 +9,7 @@
 ![mobilescope while observing – live list of WLAN and BLE signals](docs/images/screenshot-active1.png)
 ![mobilescope while observing – live list of WLAN and BLE signals](docs/images/screenshot-active2.png)
 
-> **Status:** early development (v0.1). The Android app scans real WLAN and BLE signals. The web app runs a demo scanner (browsers cannot scan WLAN) and is meant for analysis. Not yet published as a release.
+> **Status:** early development (v1.0). The Android app scans real WLAN and BLE signals. The web app runs a demo scanner (browsers cannot scan WLAN) and is meant for analysis. Not yet published as a release.
 
 ---
 
@@ -42,19 +42,19 @@ Tap **"Warum?" ("Why?")** on any row to see the evidence records, their sources 
 
 ## Features
 
-| Area                                                                    | Status                                           |
-| ----------------------------------------------------------------------- | ------------------------------------------------ |
-| Live monitor (WLAN + BLE), filter and search                            | ✅ implemented                                   |
-| Native Android scanner (Kotlin plugin, permissions, device diagnostics) | ✅ implemented                                   |
-| IEEE OUI classification (MA-L / MA-M / MA-S, 54k+ ranges)               | ✅ implemented                                   |
-| Evidence engine with limitations ("Why?" dialog)                        | ✅ implemented                                   |
-| Watch / Mute / Exclude rule engine, conflict handling, event log        | ✅ engine implemented, ⏳ rule editor UI planned |
-| Light and dark theme                                                    | ✅ implemented                                   |
-| Local session storage (IndexedDB, autosave every 30 s) | ✅ implemented |
-| CSV / JSON export (optional address truncation, names omitted), JSON import | ✅ implemented |
-| Foreground service for long runs with screen off                        | ⏳ planned                                       |
-| AI debrief (opt-in, anonymized package)                                 | 🔬 research                                      |
-| Windows / Linux scanners                                                | 🔬 later                                         |
+| Area                                                                        | Status                                           |
+| --------------------------------------------------------------------------- | ------------------------------------------------ |
+| Live monitor (WLAN + BLE), filter and search                                | ✅ implemented                                   |
+| Native Android scanner (Kotlin plugin, permissions, device diagnostics)     | ✅ implemented                                   |
+| IEEE OUI classification (MA-L / MA-M / MA-S, 54k+ ranges)                   | ✅ implemented                                   |
+| Evidence engine with limitations ("Why?" dialog)                            | ✅ implemented                                   |
+| Watch / Mute / Exclude rule engine, conflict handling, event log            | ✅ engine implemented, ⏳ rule editor UI planned |
+| Light and dark theme                                                        | ✅ implemented                                   |
+| Local session storage (IndexedDB, autosave every 30 s)                      | ✅ implemented                                   |
+| CSV / JSON export (optional address truncation, names omitted), JSON import | ✅ implemented                                   |
+| Foreground service for long runs with screen off                            | ⏳ planned                                       |
+| AI debrief (opt-in, anonymized package)                                     | 🔬 research                                      |
+| Windows / Linux scanners                                                    | 🔬 later                                         |
 
 <!-- SCREENSHOT (inactive state): replace docs/images/screenshot-inactive.png with a capture before "Start observation" is pressed. -->
 <p align="center">
@@ -143,7 +143,7 @@ Licensed under the [Apache License 2.0](LICENSE). It includes a disclaimer of wa
 
 <!-- Bild (aktiver Zustand) steht oben im englischen Teil; docs/images/screenshot-active.png ersetzen. -->
 
-> **Stand:** frühe Entwicklung (v0.1). Die Android-App scannt echte WLAN- und BLE-Signale. Die Webapp nutzt einen Demo-Scanner (Browser können kein WLAN scannen) und dient der Auswertung. Noch kein Release.
+> **Stand:** frühe Entwicklung (v1.0). Die Android-App scannt echte WLAN- und BLE-Signale. Die Webapp nutzt einen Demo-Scanner (Browser können kein WLAN scannen) und dient der Auswertung. Noch kein Release.
 
 ## Was es ist
 
@@ -174,19 +174,19 @@ Mit **„Warum?"** in jeder Zeile siehst du Evidenzdatensätze, Quellen und Eins
 
 ## Funktionen
 
-| Bereich                                                                 | Stand                                        |
-| ----------------------------------------------------------------------- | -------------------------------------------- |
-| Live Monitor (WLAN + BLE), Filter und Suche                             | ✅ umgesetzt                                 |
-| Nativer Android-Scanner (Kotlin-Plugin, Berechtigungen, Gerätediagnose) | ✅ umgesetzt                                 |
-| IEEE-OUI-Klassifizierung (MA-L / MA-M / MA-S, über 54.000 Bereiche)     | ✅ umgesetzt                                 |
-| Evidenz-Engine mit Einschränkungen („Warum?"-Dialog)                    | ✅ umgesetzt                                 |
-| Watch-/Mute-/Exclude-Regeln, Konfliktbehandlung, Ereignisprotokoll      | ✅ Engine umgesetzt, ⏳ Regel-Editor geplant |
-| Helles und dunkles Design                                               | ✅ umgesetzt                                 |
-| Lokale Sessionspeicherung (IndexedDB, Autosave alle 30 s) | ✅ umgesetzt |
-| CSV-/JSON-Export (optional Adressen kürzen, Namen weglassen), JSON-Import | ✅ umgesetzt |
-| Foreground-Service für lange Läufe bei ausgeschaltetem Bildschirm       | ⏳ geplant                                   |
-| AI Debrief (optional, anonymisiertes Paket)                             | 🔬 Untersuchung                              |
-| Windows-/Linux-Scanner                                                  | 🔬 später                                    |
+| Bereich                                                                   | Stand                                        |
+| ------------------------------------------------------------------------- | -------------------------------------------- |
+| Live Monitor (WLAN + BLE), Filter und Suche                               | ✅ umgesetzt                                 |
+| Nativer Android-Scanner (Kotlin-Plugin, Berechtigungen, Gerätediagnose)   | ✅ umgesetzt                                 |
+| IEEE-OUI-Klassifizierung (MA-L / MA-M / MA-S, über 54.000 Bereiche)       | ✅ umgesetzt                                 |
+| Evidenz-Engine mit Einschränkungen („Warum?"-Dialog)                      | ✅ umgesetzt                                 |
+| Watch-/Mute-/Exclude-Regeln, Konfliktbehandlung, Ereignisprotokoll        | ✅ Engine umgesetzt, ⏳ Regel-Editor geplant |
+| Helles und dunkles Design                                                 | ✅ umgesetzt                                 |
+| Lokale Sessionspeicherung (IndexedDB, Autosave alle 30 s)                 | ✅ umgesetzt                                 |
+| CSV-/JSON-Export (optional Adressen kürzen, Namen weglassen), JSON-Import | ✅ umgesetzt                                 |
+| Foreground-Service für lange Läufe bei ausgeschaltetem Bildschirm         | ⏳ geplant                                   |
+| AI Debrief (optional, anonymisiertes Paket)                               | 🔬 Untersuchung                              |
+| Windows-/Linux-Scanner                                                    | 🔬 später                                    |
 
 _Ein Bild des inaktiven Zustands steht weiter oben im englischen Teil (`docs/images/screenshot-inactive.png`)._
 

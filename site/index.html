@@ -367,9 +367,19 @@
       .thanks {
         text-align: center;
       }
-      .fineprint { padding: 32px 0; }
-      .fineprint h3 { font-size: 0.95rem; color: var(--muted); }
-      .fineprint p { font-size: 0.82rem; color: var(--muted); max-width: 70ch; margin: 0 0 8px; }
+      .fineprint {
+        padding: 32px 0;
+      }
+      .fineprint h3 {
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+      .fineprint p {
+        font-size: 0.82rem;
+        color: var(--muted);
+        max-width: 70ch;
+        margin: 0 0 8px;
+      }
       .thanks p {
         max-width: 52ch;
         margin: 0 auto 24px;
@@ -409,20 +419,14 @@
         <p class="headline">
           <span data-l="de"
             >Sieh, was im Funk los ist – und warum die App es so einordnet. APK
-            Android 13+ !</span
+            Android 13+</span
           >
           <span data-l="en"
-            >See what is on the air – and why the app classifies it that
-            way.</span
+            >See what is on the air – and why the app classifies it that way.
+            APK Android 13+</span
           >
-          <span data-l="de"
-            >mobilescope wächst Schritt für Schritt. Echte Dateien gibt es
-            Bald.</span
-          >
-          <span data-l="en"
-            >mobilescope grows step by step. Real files will be available
-            soon.</span
-          >
+          <span data-l="de">mobilescope wächst Schritt für Schritt.</span>
+          <span data-l="en">mobilescope grows step by step.</span>
         </p>
         <div class="phones">
           <img
@@ -438,10 +442,10 @@
         </div>
         <p class="note">
           <span data-l="de"
-            >Frühe Version 0.1 · Debug-APK, noch kein Store-Release.</span
+            >Frühe Version 1.0 · Debug-APK, noch kein Store-Release.</span.
           >
           <span data-l="en"
-            >Early version 0.1 · debug APK, not a store release yet.</span
+            >Early version 1.0 · debug APK, not a store release yet.</span
           >
         </p>
       </section>
@@ -704,11 +708,15 @@
 
       <!-- 6. Danke + Links -->
       <section class="thanks">
+        <p class="eyebrow">
+          <span data-l="de">Download</span
+          ><span data-l="en">Download</span>
+        </p>
         <p class="muted" data-l="de">
-          mobilescope wächst Schritt für Schritt. Echte Dateien gibt es Bald.
+          Mobilescope auf GitHub
         </p>
         <p class="muted" data-l="en">
-          mobilescope grows step by step. Real files will be available soon.
+          Mobilescope on GitHub
         </p>
         <div class="cta">
           <a
@@ -716,50 +724,59 @@
             data-l="en"
             target="_blank"
             href="https://github.com/ATOMICMBAG/mobilescope-v1"
-            >Mobilescope on GitHub</a
+            >Mobilescope code on GitHub</a
           >
           <a
             class="btn"
             data-l="de"
             target="_blank"
             href="https://github.com/ATOMICMBAG/mobilescope-v1"
-            >Mobilescope auf GitHub</a
+            >Mobilescope code auf GitHub</a
           >
           <a
             class="btn primary"
             target="_blank"
             href="https://github.com/ATOMICMBAG/mobilescope-v1/releases/latest"
           >
-            <span data-l="de">APK herunterladen /GitHub</span
-            ><span data-l="en">Download APK /GitHub</span>
+            <span data-l="de">APK auf GitHub</span
+            ><span data-l="en">APK on GitHub</span>
           </a>
         </div>
       </section>
 
       <section class="fineprint" aria-labelledby="fp-h">
         <h3 id="fp-h">
-          <span data-l="de">Gut zu wissen</span><span data-l="en">Good to know</span>
+          <span data-l="de">Gut zu wissen</span
+          ><span data-l="en">Good to know</span>
         </h3>
         <p data-l="de">
-          mobilescope wertet nur Funk-Metadaten aus, die Geräte offen aussenden. Es verbindet sich mit keinem fremden
-          Gerät, entschlüsselt nichts, sendet nichts und speichert keinen Standort. Bitte nutze es als Messwerkzeug:
-          nicht, um Personen zu verfolgen, und nur dort, wo du messen darfst. MAC-Adressen und BLE-Kennungen können
-          personenbezogen sein.
+          mobilescope wertet nur Funk-Metadaten aus, die Geräte offen aussenden.
+          Es verbindet sich mit keinem fremden Gerät, entschlüsselt nichts,
+          sendet nichts und speichert keinen Standort. Bitte nutze es als
+          Messwerkzeug: nicht, um Personen zu verfolgen, und nur dort, wo du
+          messen darfst. MAC-Adressen und BLE-Kennungen können personenbezogen
+          sein.
         </p>
         <p data-l="en">
-          mobilescope only evaluates radio metadata that devices broadcast openly. It connects to no foreign device,
-          decrypts nothing, sends nothing and stores no location. Please use it as a measurement tool: not to track
-          people, and only where you are allowed to measure. MAC addresses and BLE identifiers can be personal data.
+          mobilescope only evaluates radio metadata that devices broadcast
+          openly. It connects to no foreign device, decrypts nothing, sends
+          nothing and stores no location. Please use it as a measurement tool:
+          not to track people, and only where you are allowed to measure. MAC
+          addresses and BLE identifiers can be personal data.
         </p>
         <p data-l="de">
-          Nach unserem Verständnis ist ein passiver Empfänger offener Metadaten ein Dual-Use-Werkzeug wie gängige
-          WLAN-Analyzer-Apps; für Missbrauch haftet, wer die Software missbraucht oder verändert. Das ist keine
-          Rechtsberatung. Die Software steht unter der Apache-Lizenz 2.0, ohne Gewährleistung.
+          Nach unserem Verständnis ist ein passiver Empfänger offener Metadaten
+          ein Dual-Use-Werkzeug wie gängige WLAN-Analyzer-Apps; für Missbrauch
+          haftet, wer die Software missbraucht oder verändert. Das ist keine
+          Rechtsberatung. Die Software steht unter der Apache-Lizenz 2.0, ohne
+          Gewährleistung.
         </p>
         <p data-l="en">
-          To our understanding, a passive receiver of open metadata is a dual-use tool like common WLAN analyzer apps;
-          whoever misuses or modifies the software is responsible for that misuse. This is not legal advice. The
-          software is licensed under the Apache License 2.0, without warranty.
+          To our understanding, a passive receiver of open metadata is a
+          dual-use tool like common WLAN analyzer apps; whoever misuses or
+          modifies the software is responsible for that misuse. This is not
+          legal advice. The software is licensed under the Apache License 2.0,
+          without warranty.
         </p>
       </section>
     </div>
@@ -767,7 +784,9 @@
       © mobilescope · <a target="_blank" href="https://maazi.de">maazi.de</a> ·
       <a href="https://maazi.de/static/index_impressum.html">Impressum</a> ·
       <a href="https://maazi.de/static/index_datenschutz.html">Datenschutz</a> ·
-      <a href="https://github.com/ATOMICMBAG/mobilescope-v1/blob/main/LICENSE">Apache-2.0</a>
+      <a href="https://github.com/ATOMICMBAG/mobilescope-v1/blob/main/LICENSE"
+        >Apache-2.0</a
+      >
     </footer>
 
     <script>

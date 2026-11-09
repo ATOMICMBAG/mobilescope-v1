@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mobilescope | maazi.de</title>
+    <meta
+      name="description"
+      content="Passive Wireless Environment Intelligence: WLAN und Bluetooth LE beobachten, klassifizieren und belegen. Lokal, nachvollziehbar, ehrlich."
+    />
+    <meta name="color-scheme" content="light" />
+    <style>
+      :root {
+        --bg: #f3f5f8;
+        --panel: #ffffff;
+        --line: #d5dbe3;
+        --text: #17202b;
+        --muted: #5d6b7c;
+        --accent: #0a8f5b;
+        --on-accent: #ffffff;
+        --warn: #a86d00;
+        --wifi: #1560bd;
+        --ble: #6b3fc9;
+        --radius: 10px;
+        --mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          16px/1.6 system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+      a {
+        color: var(--accent);
+      }
+      .wrap {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 0 16px;
+      }
+      section {
+        padding: 56px 0;
+        border-top: 1px solid var(--line);
+      }
+      section:first-of-type {
+        border-top: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.2;
+        margin: 0 0 12px;
+      }
+      h2 {
+        font-size: clamp(1.4rem, 3vw, 1.9rem);
+      }
+      .eyebrow {
+        font: 600 0.8rem/1 var(--mono);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .muted {
+        color: var(--muted);
+      }
+
+      /* Kopf */
+      .bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+      }
+      .dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 3px solid var(--accent);
+        box-shadow:
+          inset 0 0 0 3px var(--bg),
+          inset 0 0 0 7px var(--accent);
+      }
+      .lang {
+        display: flex;
+        gap: 4px;
+      }
+      .lang button {
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--muted);
+        border-radius: var(--radius);
+        padding: 4px 10px;
+        font: inherit;
+        font-size: 0.85rem;
+        cursor: pointer;
+      }
+      .lang button[aria-pressed="true"] {
+        color: var(--on-accent);
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding-top: 32px;
+      }
+      .hero h1 {
+        font-size: clamp(2.2rem, 6vw, 3.6rem);
+        letter-spacing: -0.02em;
+      }
+      .hero .headline {
+        font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+        color: var(--muted);
+        max-width: 40ch;
+        margin: 0 auto 28px;
+      }
+      .phones {
+        display: flex;
+        justify-content: center;
+        gap: clamp(12px, 4vw, 40px);
+        margin: 32px 0;
+      }
+      .phone {
+        width: min(42vw, 260px);
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 12px 32px rgb(23 32 43 / 0.12);
+        display: block;
+      }
+      .phone.b {
+        margin-top: 36px;
+      }
+      .cta {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 22px;
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        background: var(--panel);
+        color: var(--text);
+        font-weight: 600;
+        text-decoration: none;
+      }
+      .btn.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--on-accent);
+      }
+      .btn:hover {
+        filter: brightness(0.96);
+      }
+      .note {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-top: 12px;
+      }
+
+      /* Zweispaltig */
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        align-items: start;
+      }
+      @media (max-width: 760px) {
+        .split {
+          grid-template-columns: 1fr;
+        }
+      }
+      ul.ticks {
+        padding: 0;
+        list-style: none;
+        margin: 16px 0 0;
+      }
+      ul.ticks li {
+        padding-left: 26px;
+        position: relative;
+        margin-bottom: 8px;
+      }
+      ul.ticks li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      /* Beispielkarte */
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 18px;
+      }
+      .card h3 {
+        font-size: 1rem;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .tag {
+        font: 700 0.72rem/1 var(--mono);
+        padding: 4px 7px;
+        border-radius: 6px;
+        border: 1px solid currentColor;
+      }
+      .tag.wifi {
+        color: var(--wifi);
+      }
+      .tag.ble {
+        color: var(--ble);
+      }
+      .state {
+        font-size: 0.8rem;
+        color: var(--warn);
+        border: 1px solid var(--warn);
+        border-radius: 999px;
+        padding: 2px 10px;
+      }
+      dl.kv {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 6px 16px;
+        margin: 0;
+        font-size: 0.92rem;
+      }
+      dl.kv dt {
+        color: var(--muted);
+      }
+      dl.kv dd {
+        margin: 0;
+      }
+      .mono {
+        font-family: var(--mono);
+      }
+      .limit {
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px dashed var(--line);
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+      .limit strong {
+        color: var(--text);
+      }
+
+      /* Collage */
+      .collage {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 28px;
+      }
+      .collage img {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        box-shadow: 0 8px 22px rgb(23 32 43 / 0.1);
+        transition: transform 0.2s;
+      }
+      .collage img:nth-child(odd) {
+        transform: rotate(-1.5deg);
+      }
+      .collage img:nth-child(even) {
+        transform: rotate(1.5deg) translateY(14px);
+      }
+      .collage img:hover {
+        transform: scale(1.03);
+      }
+      @media (max-width: 760px) {
+        .collage {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      .caps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 28px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        text-align: center;
+      }
+      @media (max-width: 760px) {
+        .caps {
+          display: none;
+        }
+      }
+
+      /* Tabelle */
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 20px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+        font-size: 0.92rem;
+      }
+      th {
+        color: var(--muted);
+        font-weight: 600;
+      }
+      tr:last-child td {
+        border-bottom: 0;
+      }
+
+      /* Tipps */
+      .tips {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 20px;
+      }
+      @media (max-width: 760px) {
+        .tips {
+          grid-template-columns: 1fr;
+        }
+      }
+      .tips .card {
+        font-size: 0.93rem;
+      }
+      .tips h3 {
+        margin-bottom: 6px;
+      }
+
+      /* Danke */
+      .thanks {
+        text-align: center;
+      }
+      .fineprint { padding: 32px 0; }
+      .fineprint h3 { font-size: 0.95rem; color: var(--muted); }
+      .fineprint p { font-size: 0.82rem; color: var(--muted); max-width: 70ch; margin: 0 0 8px; }
+      .thanks p {
+        max-width: 52ch;
+        margin: 0 auto 24px;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 24px 0 40px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+      [data-l] {
+        display: none;
+      }
+      html[lang="de"] [data-l="de"],
+      html[lang="en"] [data-l="en"] {
+        display: revert;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="bar">
+        <div class="brand">
+          <span class="dot" aria-hidden="true"></span> mobilescope | maazi.de
+        </div>
+        <div class="lang" role="group" aria-label="Sprache / Language">
+          <button type="button" data-set="de" aria-pressed="true">DE</button>
+          <button type="button" data-set="en" aria-pressed="false">EN</button>
+        </div>
+      </header>
+
+      <!-- 1. Titel, Schlagzeile, zwei Bilder, Links -->
+      <section class="hero">
+        <p class="eyebrow">Passive Wireless Environment Intelligence</p>
+        <h1>Mobilescope APK</h1>
+        <p class="headline">
+          <span data-l="de"
+            >Sieh, was im Funk los ist – und warum die App es so einordnet. APK
+            Android 13+ !</span
+          >
+          <span data-l="en"
+            >See what is on the air – and why the app classifies it that
+            way.</span
+          >
+          <span data-l="de"
+            >mobilescope wächst Schritt für Schritt. Echte Dateien gibt es
+            Bald.</span
+          >
+          <span data-l="en"
+            >mobilescope grows step by step. Real files will be available
+            soon.</span
+          >
+        </p>
+        <div class="phones">
+          <img
+            class="phone"
+            src="img/screenshot-active1.png"
+            alt="mobilescope bei laufender Beobachtung: Live-Liste mit WLAN und BLE"
+          />
+          <img
+            class="phone b"
+            src="img/screenshot-inactive2.png"
+            alt="mobilescope im Ruhezustand: Ereignisse und Diagnose"
+          />
+        </div>
+        <p class="note">
+          <span data-l="de"
+            >Frühe Version 0.1 · Debug-APK, noch kein Store-Release.</span
+          >
+          <span data-l="en"
+            >Early version 0.1 · debug APK, not a store release yet.</span
+          >
+        </p>
+      </section>
+
+      <!-- 2. Text und Beispiel -->
+      <section>
+        <div class="split">
+          <div>
+            <p class="eyebrow">
+              <span data-l="de">Das Prinzip</span
+              ><span data-l="en">The principle</span>
+            </p>
+            <h2>
+              <span data-l="de">Beobachtung ist nicht Interpretation.</span>
+              <span data-l="en">Observation is not interpretation.</span>
+            </h2>
+            <p data-l="de">
+              mobilescope ist ein Messwerkzeug für Techniker, Ingenieure und
+              Wissenschaftler. Es empfängt WLAN- und Bluetooth-LE-Signale passiv
+              und zeigt zu jeder Einordnung die Begründung, die Sicherheit und
+              die Grenzen der Aussage. Keine Scheinprozente, kein „Geräte in der
+              Nähe“-Spielzeug.
+            </p>
+            <p data-l="en">
+              mobilescope is a measurement tool for technicians, engineers and
+              scientists. It receives WLAN and Bluetooth LE signals passively
+              and shows the reasoning, the confidence and the limits of every
+              classification. No fake percentages, no “devices near me” toy.
+            </p>
+            <ul class="ticks">
+              <li data-l="de">Lokal zuerst: nichts wird hochgeladen</li>
+              <li data-l="en">Local first: nothing is uploaded</li>
+              <li data-l="de">
+                Passiv: keine Verbindung, kein Mitschnitt von Inhalten
+              </li>
+              <li data-l="en">Passive: no connections, no payload capture</li>
+              <li data-l="de">
+                Datenschutz: kein Standort gespeichert, Export mit
+                Anonymisierung
+              </li>
+              <li data-l="en">
+                Privacy: no location stored, export with anonymization
+              </li>
+            </ul>
+          </div>
+
+          <div class="card" aria-label="Beispiel">
+            <h3>
+              <span data-l="de">Beispiel: „Warum?“ bei einem Signal</span
+              ><span data-l="en">Example: “Why?” for one signal</span>
+            </h3>
+            <div class="row">
+              <span class="tag ble">BLE</span>
+              <span class="state"
+                ><span data-l="de">Wahrscheinlich</span
+                ><span data-l="en">Probable</span></span
+              >
+            </div>
+            <dl class="kv">
+              <dt data-l="de">Adresse</dt>
+              <dt data-l="en">Address</dt>
+              <dd class="mono">14:60:9C:xx:xx:xx</dd>
+              <dt data-l="de">Hersteller</dt>
+              <dt data-l="en">Manufacturer</dt>
+              <dd>Microsoft</dd>
+              <dt>RSSI</dt>
+              <dd class="mono">−45 dBm</dd>
+              <dt data-l="de">Beleg</dt>
+              <dt data-l="en">Evidence</dt>
+              <dd>IEEE-OUI · BLE Company ID</dd>
+            </dl>
+            <p class="limit" data-l="de">
+              <strong>Grenzen:</strong> Der Hersteller nennt den registrierten
+              Adressblock, nicht Modell oder Besitzer. BLE-Adressen können
+              zufällig wechseln.
+            </p>
+            <p class="limit" data-l="en">
+              <strong>Limits:</strong> The manufacturer names the registered
+              address block, not model or owner. BLE addresses may rotate
+              randomly.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Bildcollage -->
+      <section>
+        <p class="eyebrow">
+          <span data-l="de">Im Einsatz</span><span data-l="en">In use</span>
+        </p>
+        <h2>
+          <span data-l="de">Echte Messung, echtes Handy.</span
+          ><span data-l="en">Real measurement, real phone.</span>
+        </h2>
+        <div class="collage">
+          <img
+            src="img/screenshot-active1.png"
+            alt="Live-Monitor mit Kennzahlen und Signalliste"
+          />
+          <img
+            src="img/screenshot-active2.png"
+            alt="Signalkarten mit Hersteller, Identität und RSSI"
+          />
+          <img
+            src="img/screenshot-inactive1.png"
+            alt="Ruhezustand mit Start-Schaltfläche"
+          />
+          <img
+            src="img/screenshot-inactive2.png"
+            alt="Diagnose: Scanner, Takt, OUI-Bestand"
+          />
+        </div>
+        <div class="caps">
+          <span data-l="de">Live-Monitor</span
+          ><span data-l="en">Live monitor</span>
+          <span data-l="de">Signale mit Evidenz</span
+          ><span data-l="en">Signals with evidence</span>
+          <span data-l="de">Ruhezustand</span
+          ><span data-l="en">Idle state</span>
+          <span data-l="de">Diagnose &amp; Grenzen</span
+          ><span data-l="en">Diagnostics &amp; limits</span>
+        </div>
+      </section>
+
+      <!-- 4. Text und Beispiele -->
+      <section>
+        <p class="eyebrow">
+          <span data-l="de">Funktionen</span><span data-l="en">Features</span>
+        </p>
+        <h2>
+          <span data-l="de">Was die App zeigt – und was nicht.</span
+          ><span data-l="en">What the app shows – and what it does not.</span>
+        </h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-l="de">Information</th>
+                <th data-l="en">Information</th>
+                <th data-l="de">Bedeutet</th>
+                <th data-l="en">Means</th>
+                <th data-l="de">Bedeutet nicht</th>
+                <th data-l="en">Does not mean</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>RSSI</td>
+                <td data-l="de">Empfangsstärke an diesem Gerät</td>
+                <td data-l="en">Signal strength at this device</td>
+                <td data-l="de">Entfernung oder Position</td>
+                <td data-l="en">Distance or position</td>
+              </tr>
+              <tr>
+                <td>OUI</td>
+                <td data-l="de">
+                  Registrierter Adressblock eines Herstellers (IEEE)
+                </td>
+                <td data-l="en">
+                  Registered manufacturer address block (IEEE)
+                </td>
+                <td data-l="de">Modell, Besitzer, Zweck</td>
+                <td data-l="en">Model, owner, purpose</td>
+              </tr>
+              <tr>
+                <td data-l="de">Erste / letzte Beobachtung</td>
+                <td data-l="en">First / last observation</td>
+                <td data-l="de">Zeitraum des Empfangs</td>
+                <td data-l="en">Time span of reception</td>
+                <td data-l="de">Anwesenheit</td>
+                <td data-l="en">Presence</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="split" style="margin-top: 28px">
+          <div class="card">
+            <h3>
+              <span data-l="de">Sessions</span><span data-l="en">Sessions</span>
+            </h3>
+            <p class="muted" data-l="de">
+              Jede Beobachtung wird lokal gesichert, alle 30 s und beim Stoppen.
+              Pro Signal: RSSI min / Ø / max, Zeitraum, Anzahl, Evidenz.
+            </p>
+            <p class="muted" data-l="en">
+              Every observation is saved locally, every 30 s and on stop. Per
+              signal: RSSI min / avg / max, time span, count, evidence.
+            </p>
+          </div>
+          <div class="card">
+            <h3>Export</h3>
+            <p class="muted" data-l="de">
+              CSV für Excel (Semikolon, UTF-8) oder JSON inklusive Evidenz und
+              Verlauf, wieder importierbar. Optional: Adressen kürzen, Namen
+              weglassen.
+            </p>
+            <p class="muted" data-l="en">
+              CSV for spreadsheets (UTF-8) or JSON including evidence and
+              history, re-importable. Optional: shorten addresses, omit names.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Tipps -->
+      <section>
+        <p class="eyebrow">
+          <span data-l="de">Kurze Tipps</span
+          ><span data-l="en">Quick tips</span>
+        </p>
+        <h2>
+          <span data-l="de">Damit die Messung etwas taugt.</span
+          ><span data-l="en">To get useful measurements.</span>
+        </h2>
+        <div class="tips">
+          <div class="card">
+            <h3>
+              <span data-l="de">WLAN-Takt</span
+              ><span data-l="en">WLAN cadence</span>
+            </h3>
+            <span data-l="de"
+              >Android drosselt WLAN-Scans (ca. alle 30 s). BLE meldet
+              fortlaufend. Das ist keine Schwäche der App.</span
+            >
+            <span data-l="en"
+              >Android throttles WLAN scans (about every 30 s). BLE reports
+              continuously. That is an OS limit, not an app flaw.</span
+            >
+          </div>
+          <div class="card">
+            <h3>
+              <span data-l="de">Standort-Berechtigung</span
+              ><span data-l="en">Location permission</span>
+            </h3>
+            <span data-l="de"
+              >Android verlangt sie fürs Scannen. mobilescope liest und
+              speichert keine Position.</span
+            >
+            <span data-l="en"
+              >Android requires it for scanning. mobilescope neither reads nor
+              stores a position.</span
+            >
+          </div>
+          <div class="card">
+            <h3>
+              <span data-l="de">Vor dem Teilen</span
+              ><span data-l="en">Before sharing</span>
+            </h3>
+            <span data-l="de"
+              >Exporte enthalten Funkkennungen deiner Umgebung. Adressen kürzen
+              und Namen weglassen.</span
+            >
+            <span data-l="en"
+              >Exports contain radio identifiers from your surroundings. Shorten
+              addresses and omit names.</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. Danke + Links -->
+      <section class="thanks">
+        <p class="muted" data-l="de">
+          mobilescope wächst Schritt für Schritt. Echte Dateien gibt es Bald.
+        </p>
+        <p class="muted" data-l="en">
+          mobilescope grows step by step. Real files will be available soon.
+        </p>
+        <div class="cta">
+          <a
+            class="btn"
+            data-l="en"
+            target="_blank"
+            href="https://github.com/ATOMICMBAG?tab=repositories"
+            >Mobilescope on GitHub</a
+          >
+          <a
+            class="btn"
+            data-l="de"
+            target="_blank"
+            href="https://github.com/ATOMICMBAG?tab=repositories"
+            >Mobilescope auf GitHub</a
+          >
+          <a
+            class="btn primary"
+            target="_blank"
+            href="https://github.com/ATOMICMBAG/mobilescope-v1/releases/latest"
+          >
+            <span data-l="de">APK herunterladen /GitHub</span
+            ><span data-l="en">Download APK /GitHub</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="fineprint" aria-labelledby="fp-h">
+        <h3 id="fp-h">
+          <span data-l="de">Gut zu wissen</span><span data-l="en">Good to know</span>
+        </h3>
+        <p data-l="de">
+          mobilescope wertet nur Funk-Metadaten aus, die Geräte offen aussenden. Es verbindet sich mit keinem fremden
+          Gerät, entschlüsselt nichts, sendet nichts und speichert keinen Standort. Bitte nutze es als Messwerkzeug:
+          nicht, um Personen zu verfolgen, und nur dort, wo du messen darfst. MAC-Adressen und BLE-Kennungen können
+          personenbezogen sein.
+        </p>
+        <p data-l="en">
+          mobilescope only evaluates radio metadata that devices broadcast openly. It connects to no foreign device,
+          decrypts nothing, sends nothing and stores no location. Please use it as a measurement tool: not to track
+          people, and only where you are allowed to measure. MAC addresses and BLE identifiers can be personal data.
+        </p>
+        <p data-l="de">
+          Nach unserem Verständnis ist ein passiver Empfänger offener Metadaten ein Dual-Use-Werkzeug wie gängige
+          WLAN-Analyzer-Apps; für Missbrauch haftet, wer die Software missbraucht oder verändert. Das ist keine
+          Rechtsberatung. Die Software steht unter der Apache-Lizenz 2.0, ohne Gewährleistung.
+        </p>
+        <p data-l="en">
+          To our understanding, a passive receiver of open metadata is a dual-use tool like common WLAN analyzer apps;
+          whoever misuses or modifies the software is responsible for that misuse. This is not legal advice. The
+          software is licensed under the Apache License 2.0, without warranty.
+        </p>
+      </section>
+    </div>
+    <footer>
+      © mobilescope · <a target="_blank" href="https://maazi.de">maazi.de</a> ·
+      <a href="https://maazi.de/static/index_impressum.html">Impressum</a> ·
+      <a href="https://maazi.de/static/index_datenschutz.html">Datenschutz</a> ·
+      <a href="https://github.com/ATOMICMBAG/mobilescope-v1/blob/main/LICENSE">Apache-2.0</a>
+    </footer>
+
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll(".lang button");
+        function set(l) {
+          document.documentElement.lang = l;
+          buttons.forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b.dataset.set === l));
+          });
+          try {
+            localStorage.setItem("mobilescope.site.lang", l);
+          } catch (e) {}
+        }
+        buttons.forEach(function (b) {
+          b.addEventListener("click", function () {
+            set(b.dataset.set);
+          });
+        });
+        var saved = null;
+        try {
+          saved = localStorage.getItem("mobilescope.site.lang");
+        } catch (e) {}
+        set(
+          saved ||
+            ((navigator.language || "de").slice(0, 2) === "de" ? "de" : "en"),
+        );
+      })();
+    </script>
+  </body>
+</html>

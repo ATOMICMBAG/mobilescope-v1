@@ -1,0 +1,13 @@
+{
+  "name": "@mobilescope/data",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Versionierte Referenzdaten (IEEE OUI). oui.json wird mit scripts/build-oui.mjs erzeugt.",
+  "exports": {
+    "./oui.json": "./oui.json"
+  },
+  "scripts": {
+    "build:oui": "node scripts/build-oui.mjs"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "mobilescope",
+  "private": true,
+  "license": "Apache-2.0",
+  "version": "0.1.0",
+  "workspaces": ["packages/*", "apps/*"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "npm run dev -w @mobilescope/web",
+    "build": "npm run build -w @mobilescope/web",
+    "test": "npm run test -w @mobilescope/core",
+    "typecheck": "npm run typecheck -w @mobilescope/core && npm run typecheck -w @mobilescope/web"
+  }
+}

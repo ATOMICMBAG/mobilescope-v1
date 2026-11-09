@@ -1,0 +1,8 @@
+{
+  "appId": "de.mobilescope.app",
+  "appName": "mobilescope",
+  "webDir": "../web/dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}

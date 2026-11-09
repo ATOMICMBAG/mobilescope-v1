@@ -129,7 +129,7 @@ mobilescope is a measurement and documentation tool. It evaluates radio metadata
 
 ## License
 
-Licensed under the [Apache License 2.0](LICENSE). It includes a disclaimer of warranty and liability. The IEEE OUI data in `packages/data` comes from the [IEEE Registration Authority](https://standards-oui.ieee.org/) and is subject to their terms.
+Licensed under the [Apache License 2.0](LICENSE). It includes a disclaimer of warranty and liability. The IEEE OUI data in `packages/data` comes from the [IEEE Registration Authority](https://standards-oui.ieee.org/) and is subject to their terms !
 
 ---
 
@@ -256,4 +256,4 @@ mobilescope ist ein Mess- und Dokumentationswerkzeug. Es wertet Funk-Metadaten a
 
 ## Lizenz
 
-Lizenziert unter der [Apache License 2.0](LICENSE), inklusive Gewährleistungs- und Haftungsausschluss. Die IEEE-OUI-Daten in `packages/data` stammen von der [IEEE Registration Authority](https://standards-oui.ieee.org/) und unterliegen deren Bedingungen.
+Lizenziert unter der [Apache License 2.0](LICENSE), inklusive Gewährleistungs- und Haftungsausschluss. Die IEEE-OUI-Daten in `packages/data` stammen von der [IEEE Registration Authority](https://standards-oui.ieee.org/) und unterliegen deren Bedingungen !

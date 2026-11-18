@@ -6,10 +6,10 @@
 
 <!-- SCREENSHOT (active state): replace docs/images/screenshot-active.png with a capture of a running observation. -->
 
-![mobilescope while observing – live list of WLAN and BLE signals](docs/images/screenshot-active1.png)
-![mobilescope while observing – live list of WLAN and BLE signals](docs/images/screenshot-active2.png)
+![mobilescope while observing – key figures and signal history histogram](docs/images/screenshot-histogram1.png)
+![mobilescope while observing – histogram with PNG/CSV download and live list](docs/images/screenshot-histogram2.png)
 
-> **Status:** early development (v1.0). The Android app scans real WLAN and BLE signals. The web app runs a demo scanner (browsers cannot scan WLAN) and is meant for analysis. Not yet published as a release.
+> **Status:** early development (v1.1). The Android app scans real WLAN and BLE signals. The web app runs a demo scanner (browsers cannot scan WLAN) and is meant for analysis. Debug-signed APK available on the Releases page.
 
 ---
 
@@ -144,7 +144,7 @@ Licensed under the [Apache License 2.0](LICENSE). It includes a disclaimer of wa
 
 <!-- Bild (aktiver Zustand) steht oben im englischen Teil; docs/images/screenshot-active.png ersetzen. -->
 
-> **Stand:** frühe Entwicklung (v1.0). Die Android-App scannt echte WLAN- und BLE-Signale. Die Webapp nutzt einen Demo-Scanner (Browser können kein WLAN scannen) und dient der Auswertung. Noch kein Release.
+> **Stand:** frühe Entwicklung (v1.1). Die Android-App scannt echte WLAN- und BLE-Signale. Die Webapp nutzt einen Demo-Scanner (Browser können kein WLAN scannen) und dient der Auswertung. Debug-signierte APK auf der Releases-Seite.
 
 ## Was es ist
 

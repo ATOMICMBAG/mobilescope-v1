@@ -427,21 +427,21 @@
         <div class="phones">
           <img
             class="phone"
-            src="img/screenshot-active1.png"
-            alt="mobilescope bei laufender Beobachtung: Live-Liste mit WLAN und BLE"
+            src="img/screenshot-histogram1.png"
+            alt="mobilescope bei laufender Beobachtung: Kennzahlen und Signalverlauf als Histogramm"
           />
           <img
             class="phone b"
-            src="img/screenshot-inactive2.png"
-            alt="mobilescope im Ruhezustand: Ereignisse und Diagnose"
+            src="img/screenshot-active1.png"
+            alt="mobilescope bei laufender Beobachtung: Live-Liste mit WLAN und BLE"
           />
         </div>
         <p class="note">
           <span data-l="de"
-            >Frühe Version 1.0 · Debug-APK, noch kein Store-Release.</span.
+            >Frühe Version 1.1 · Debug-APK, noch kein Store-Release.</span.
           >
           <span data-l="en"
-            >Early version 1.0 · debug APK, not a store release yet.</span
+            >Early version 1.1 · debug APK, not a store release yet.</span
           >
         </p>
       </section>
@@ -538,8 +538,8 @@
         </h2>
         <div class="collage">
           <img
-            src="img/screenshot-active1.png"
-            alt="Live-Monitor mit Kennzahlen und Signalliste"
+            src="img/screenshot-histogram2.png"
+            alt="Signalverlauf als Histogramm mit Download und Live-Monitor"
           />
           <img
             src="img/screenshot-active2.png"
@@ -555,8 +555,8 @@
           />
         </div>
         <div class="caps">
-          <span data-l="de">Live-Monitor</span
-          ><span data-l="en">Live monitor</span>
+          <span data-l="de">Signalverlauf &amp; Live-Monitor</span
+          ><span data-l="en">Signal history &amp; live monitor</span>
           <span data-l="de">Signale mit Evidenz</span
           ><span data-l="en">Signals with evidence</span>
           <span data-l="de">Ruhezustand</span
@@ -618,6 +618,28 @@
           </table>
         </div>
         <div class="split" style="margin-top: 28px">
+          <div class="card" style="grid-column: 1 / -1">
+            <h3>
+              <span data-l="de">Signalverlauf (neu)</span
+              ><span data-l="en">Signal history (new)</span>
+            </h3>
+            <p class="muted" data-l="de">
+              Ein Histogramm zeigt die letzten Messergebnisse über die Zeit,
+              farbig aufgeteilt nach Signalstärke, Quelle oder Identität.
+              Zeitfenster von 1 Minute bis zur ganzen Session, Zählung nach
+              Signalen oder Beobachtungen. Das Diagramm lässt sich als Bild
+              (PNG) und als Datensatz (CSV) speichern. Es nutzt bewusst den
+              umgekehrten Modus der App: dunkle App, helles Diagramm.
+            </p>
+            <p class="muted" data-l="en">
+              A histogram shows recent measurements over time, split by colour
+              into signal strength, source or identity. Time windows from one
+              minute to the whole session, counted by signals or observations.
+              The chart can be saved as an image (PNG) and as a dataset (CSV).
+              It deliberately uses the opposite of the app theme: dark app,
+              light chart.
+            </p>
+          </div>
           <div class="card">
             <h3>
               <span data-l="de">Sessions</span><span data-l="en">Sessions</span>

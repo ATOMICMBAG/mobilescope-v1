@@ -7,3 +7,4 @@ export * from "./engine.js";
 export * from "./mock.js";
 export * from "./session.js";
 export * from "./export.js";
+export * from "./histogram.js";

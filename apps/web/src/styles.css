@@ -643,3 +643,53 @@ tr.excluded td {
     flex: 1;
   }
 }
+
+/* Signalverlauf: Das Diagramm hat bewusst den umgekehrten Modus (dunkle App → helles Diagramm). */
+.histogram {
+  margin-bottom: 14px;
+}
+.chart-card {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 8px 8px 6px;
+  overflow: hidden;
+}
+.chart-card svg {
+  display: block;
+  max-width: 100%;
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  list-style: none;
+  margin: 6px 0 0 30px;
+  padding: 0;
+  font-size: 12px;
+}
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.swatch {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+.chart-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.chart-foot .small {
+  margin: 0;
+  flex: 1 1 260px;
+}
+.histogram .filters select {
+  flex: 1 1 150px;
+  min-width: 0;
+}

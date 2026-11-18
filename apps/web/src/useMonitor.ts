@@ -7,6 +7,7 @@ import {
   processObservation,
   type EngineState,
   type EventType,
+  type HistPoint,
   type MsEvent,
   type ProcessedObservation,
   type Rule,
@@ -58,6 +59,8 @@ export interface Monitor {
   rows: ProcessedObservation[];
   events: MsEvent[];
   observationCount: number;
+  /** Verlauf der Beobachtungen für das Histogramm (wird fortlaufend ergänzt, nicht kopiert). */
+  history: HistPoint[];
   oui: { name: string; version: string; size: number; full: boolean };
   /** Zeitpunkt der letzten lokalen Speicherung der laufenden Session. */
   savedAt: Date | null;
@@ -75,6 +78,7 @@ export function useMonitor(): Monitor {
   const [device, setDevice] = useState<DeviceStatus | null>(null);
   const state = useRef<EngineState>(createState());
   const recorder = useRef<SessionRecorder | null>(null);
+  const history = useRef<HistPoint[]>([]);
   const [savedAt, setSavedAt] = useState<Date | null>(null);
   const ouiDb = useRef<OuiDatabase>(SEED_OUI_DB);
   const [oui, setOui] = useState({ name: SEED_OUI_DB.meta.name, version: SEED_OUI_DB.meta.version, size: SEED_OUI_DB.size, full: false });
@@ -147,6 +151,16 @@ export function useMonitor(): Monitor {
           for (const o of items) {
             const p = processObservation(state.current, o, DEMO_RULES, { oui: ouiDb.current });
             recorder.current?.add(p);
+            history.current.push({
+              t: new Date(o.ts).getTime(),
+              id: `${o.source}:${o.identifier}`,
+              source: o.source,
+              rssi: o.rssi,
+              identity: p.classification.identityState,
+            });
+          }
+          if (history.current.length > HISTORY_MAX) {
+            history.current.splice(0, history.current.length - (HISTORY_MAX - HISTORY_TRIM));
           }
           setObservationCount((n) => n + items.length);
           setTick((t) => t + 1);
@@ -189,6 +203,7 @@ export function useMonitor(): Monitor {
   const reset = useCallback(() => {
     state.current = createState();
     recorder.current = null;
+    history.current = [];
     setSavedAt(null);
     setSessionId(newSessionId());
     setObservationCount(0);
@@ -212,6 +227,7 @@ export function useMonitor(): Monitor {
     rows,
     events,
     observationCount,
+    history: history.current,
     oui,
     savedAt,
     sessionId,
@@ -220,6 +236,9 @@ export function useMonitor(): Monitor {
 }
 
 const AUTOSAVE_MS = 30_000;
+/** Obergrenze für den Verlauf im Arbeitsspeicher (ältere Punkte werden verworfen). */
+const HISTORY_MAX = 40_000;
+const HISTORY_TRIM = 5_000;
 
 function buildMeta(
   id: string,

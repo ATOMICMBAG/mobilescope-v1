@@ -5,6 +5,7 @@ import type { DeviceStatus } from "./scanner";
 import { EvidenceDialog } from "./EvidenceDialog";
 import { applyTheme, readTheme, type Theme } from "./theme";
 import { SessionsView } from "./SessionsView";
+import { HistogramPanel } from "./HistogramPanel";
 
 const IDENTITY_LABEL = {
   KNOWN: "Bekannt",
@@ -139,6 +140,15 @@ export function App() {
         <Stat label="Unbekannte Identität" value={counts.unknown} />
         <Stat label="Beobachtungen" value={m.observationCount} />
       </section>
+
+      <HistogramPanel
+        history={m.history}
+        observationCount={m.observationCount}
+        running={m.running}
+        now={now}
+        theme={theme}
+        sessionId={m.sessionId}
+      />
 
       <main className="layout">
         <section className="panel grow" aria-label="Live Monitor">

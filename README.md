@@ -51,6 +51,7 @@ Tap **"Warum?" ("Why?")** on any row to see the evidence records, their sources 
 | Watch / Mute / Exclude rule engine, conflict handling, event log            | ✅ engine implemented, ⏳ rule editor UI planned |
 | Light and dark theme                                                        | ✅ implemented                                   |
 | Local session storage (IndexedDB, autosave every 30 s)                      | ✅ implemented                                   |
+| Signal history histogram (time window, colour split, PNG + CSV download)    | ✅ implemented                                   |
 | CSV / JSON export (optional address truncation, names omitted), JSON import | ✅ implemented                                   |
 | Foreground service for long runs with screen off                            | ⏳ planned                                       |
 | AI debrief (opt-in, anonymized package)                                     | 🔬 research                                      |
@@ -183,6 +184,7 @@ Mit **„Warum?"** in jeder Zeile siehst du Evidenzdatensätze, Quellen und Eins
 | Watch-/Mute-/Exclude-Regeln, Konfliktbehandlung, Ereignisprotokoll        | ✅ Engine umgesetzt, ⏳ Regel-Editor geplant |
 | Helles und dunkles Design                                                 | ✅ umgesetzt                                 |
 | Lokale Sessionspeicherung (IndexedDB, Autosave alle 30 s)                 | ✅ umgesetzt                                 |
+| Signalverlauf-Histogramm (Zeitfenster, Farbaufteilung, PNG- und CSV-Download) | ✅ umgesetzt                              |
 | CSV-/JSON-Export (optional Adressen kürzen, Namen weglassen), JSON-Import | ✅ umgesetzt                                 |
 | Foreground-Service für lange Läufe bei ausgeschaltetem Bildschirm         | ⏳ geplant                                   |
 | AI Debrief (optional, anonymisiertes Paket)                               | 🔬 Untersuchung                              |
